@@ -1,0 +1,21 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function hasAuth() {
+      return request.auth.uid != null;
+    }
+
+    function isOwner(uid) {
+      return hasAuth() && request.auth.uid == uid;
+    }
+
+    match /users/{uid}/{allPaths=**} {
+      allow get: if isOwner(uid);
+      allow list: if isOwner(uid);
+      allow create: if isOwner(uid);
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}
