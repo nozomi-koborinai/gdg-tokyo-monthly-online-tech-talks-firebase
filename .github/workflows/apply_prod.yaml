@@ -17,8 +17,8 @@ jobs:
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER_DEV }}
-          service_account: ${{ vars.SERVICE_ACCOUNT_MAIL_DEV }}
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER_PROD }}
+          service_account: ${{ vars.SERVICE_ACCOUNT_MAIL_PROD }}
           create_credentials_file: true
           export_environment_variables: true
 
@@ -34,20 +34,20 @@ jobs:
         run: terraform fmt -check -diff -recursive
 
       - name: Initialize Terraform
-        run: terraform init -input=false -backend-config="bucket=${{ vars.BUCKET_NAME_DEV }}"
+        run: terraform init -input=false -backend-config="bucket=${{ vars.BUCKET_NAME_PROD }}"
 
       - name: Run Terraform Plan
         run: >
           terraform plan 
           -lock-timeout=120s 
-          -var=project_id=${{ vars.PROJECT_ID_DEV }} 
-          -var=project_name=${{ vars.PROJECT_ID_DEV }} 
+          -var=project_id=${{ vars.PROJECT_ID_PROD }} 
+          -var=project_name=${{ vars.PROJECT_ID_PROD }} 
           -var=billing_account=${{ vars.BILLING_ACCOUNT }} 
 
       - name: Run Terraform Apply
         run: >
           terraform apply -auto-approve 
           -lock-timeout=120s 
-          -var=project_id=${{ vars.PROJECT_ID_DEV }} 
-          -var=project_name=${{ vars.PROJECT_ID_DEV }} 
+          -var=project_id=${{ vars.PROJECT_ID_PROD }} 
+          -var=project_name=${{ vars.PROJECT_ID_PROD }} 
           -var=billing_account=${{ vars.BILLING_ACCOUNT }} 
