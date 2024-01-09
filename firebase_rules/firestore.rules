@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function hasAuth() {
+      return request.auth.uid != null;
+    }
+
+    function isOwner(uid) {
+      return hasAuth() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow get: if isOwner(uid);
+      allow list: if false;
+      allow create: if false;
+      allow update: if isOwner(uid);
+      allow delete: if isOwner(uid);
+
+      match /conf/{confId} {
+        allow get: if isOwner(uid);
+        allow list: if isOwner(uid);
+        allow create: if isOwner(uid);
+        allow update: if isOwner(uid);
+        allow delete: if isOwner(uid);
+      }
+    }
+
+    match /quiz/{quizId} {
+      allow get: if hasAuth();
+      allow list: if hasAuth();
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}

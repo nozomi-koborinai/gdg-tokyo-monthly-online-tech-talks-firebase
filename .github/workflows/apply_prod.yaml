@@ -1,0 +1,53 @@
+name: Terraform Apply for Production
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    timeout-minutes: 60
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER_DEV }}
+          service_account: ${{ vars.SERVICE_ACCOUNT_MAIL_DEV }}
+          create_credentials_file: true
+          export_environment_variables: true
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: '>= 445.0.0'
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Check Terraform Format
+        run: terraform fmt -check -diff -recursive
+
+      - name: Initialize Terraform
+        run: terraform init -input=false -backend-config="bucket=${{ vars.BUCKET_NAME_DEV }}"
+
+      - name: Run Terraform Plan
+        run: >
+          terraform plan 
+          -lock-timeout=120s 
+          -var=project_id=${{ vars.PROJECT_ID_DEV }} 
+          -var=project_name=${{ vars.PROJECT_ID_DEV }} 
+          -var=billing_account=${{ vars.BILLING_ACCOUNT }} 
+
+      - name: Run Terraform Apply
+        run: >
+          terraform apply -auto-approve 
+          -lock-timeout=120s 
+          -var=project_id=${{ vars.PROJECT_ID_DEV }} 
+          -var=project_name=${{ vars.PROJECT_ID_DEV }} 
+          -var=billing_account=${{ vars.BILLING_ACCOUNT }} 
