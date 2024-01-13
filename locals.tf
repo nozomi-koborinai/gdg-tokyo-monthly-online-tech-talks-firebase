@@ -36,17 +36,5 @@ locals {
         }
       })
     },
-    "question-4" = {
-      collection  = "quiz"
-      document_id = "question-4"
-      fields = jsonencode({
-        "question" = {
-          "stringValue" = "Forth Question"
-        },
-        "answer" = {
-          "stringValue" = "Answer 4"
-        }
-      })
-    },
   }
 }
