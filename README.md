@@ -223,45 +223,45 @@ flowchart TD
 
 #### 1. Firebase プロジェクトを生成するための Google Cloud プロジェクトを作成
 
-![create-gcp-project](/readme_images/create_gcp_project.png)
+<img src="/readme_images/create_gcp_project.png" width="500">
 
 #### 2. 作成した Google Cloud プロジェクトを Firebase プロジェクトにするためのラベルを設定
 
-![add-label](/readme_images/add_labels.png)
+<img src="/readme_images/add_labels.png" width="500">
 
 #### 3. `.tfstate` を保持する Cloud Storage バケットを作成
 
 このステップによって、コードを触るメンバー間での環境差分を無くします。
 
-![create-bucket](/readme_images/create_backend_bucket.png)
+<img src="/readme_images/create_backend_bucket.png" width="500">
 
 #### 4. Workload Identity 連携
 
 ##### 4-1. GitHub Actions が Firebase にアクセスするためのサービスアカウントを作成
 
-![create-service-account](/readme_images/create_service_account.png)
+<img src="/readme_images/create_service_account.png" width="500">
 
 ##### 4-2. サービスアカウントに対し、必要なロールを付与
 
-![add-roles](/readme_images/add_roles.png)
+<img src="/readme_images/add_roles.png" width="500">
 
 ##### 4-3. ID プールの作成
 
-![workload-identity-1](/readme_images/workload_identity_1.png)
+<img src="/readme_images/workload_identity_1.png" width="500">
 
 ##### 4-4. プールにプロバイダを追加
 
-![workload-identity-2](/readme_images/workload_identity_2.png)
+<img src="/readme_images/workload_identity_2.png" width="500">
 
 
 ##### 4-5. プロバイダの属性を構成
 
-![workload-identity-3](/readme_images/workload_identity_3.png)
+<img src="/readme_images/workload_identity_3.png" width="500">
 
 ##### 4-6. サービスアカウントに対してアクセス権を付与
 
-![workload-identity-4](/readme_images/workload_identity_4.png)
-![workload-identity-5](/readme_images/workload_identity_5.png)
+<img src="/readme_images/workload_identity_4.png" width="500">
+<img src="/readme_images/workload_identity_5.png" width="500">
 
 #### 5. GitHub Actions Workflows の定義
 
