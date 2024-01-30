@@ -10,12 +10,6 @@ locals {
         "answer" = {
           "stringValue" = "Answer 1"
         },
-        "created_at" = {
-          "timestampValue" = timestamp()
-        },
-        "updated_at" = {
-          "timestampValue" = timestamp()
-        }
       })
     },
     {
@@ -28,12 +22,6 @@ locals {
         "answer" = {
           "stringValue" = "Answer 2"
         },
-        "created_at" = {
-          "timestampValue" = timestamp()
-        },
-        "updated_at" = {
-          "timestampValue" = timestamp()
-        }
       })
     },
     {
@@ -46,12 +34,6 @@ locals {
         "answer" = {
           "stringValue" = "Answer 3"
         },
-        "created_at" = {
-          "timestampValue" = timestamp()
-        },
-        "updated_at" = {
-          "timestampValue" = timestamp()
-        }
       })
     },
   ]
