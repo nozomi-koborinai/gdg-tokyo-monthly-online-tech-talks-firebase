@@ -1,6 +1,6 @@
 locals {
-  docs = {
-    "question-1" = {
+  docs = [
+    {
       collection  = "quiz"
       document_id = "question-1"
       fields = jsonencode({
@@ -9,10 +9,16 @@ locals {
         },
         "answer" = {
           "stringValue" = "Answer 1"
+        },
+        "created_at" = {
+          "timestampValue" = timestamp()
+        },
+        "updated_at" = {
+          "timestampValue" = timestamp()
         }
       })
     },
-    "question-2" = {
+    {
       collection  = "quiz"
       document_id = "question-2"
       fields = jsonencode({
@@ -21,10 +27,16 @@ locals {
         },
         "answer" = {
           "stringValue" = "Answer 2"
+        },
+        "created_at" = {
+          "timestampValue" = timestamp()
+        },
+        "updated_at" = {
+          "timestampValue" = timestamp()
         }
       })
     },
-    "question-3" = {
+    {
       collection  = "quiz"
       document_id = "question-3"
       fields = jsonencode({
@@ -33,8 +45,14 @@ locals {
         },
         "answer" = {
           "stringValue" = "Answer 3"
+        },
+        "created_at" = {
+          "timestampValue" = timestamp()
+        },
+        "updated_at" = {
+          "timestampValue" = timestamp()
         }
       })
     },
-  }
+  ]
 }
