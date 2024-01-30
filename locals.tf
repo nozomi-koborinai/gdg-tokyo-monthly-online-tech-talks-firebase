@@ -54,5 +54,23 @@ locals {
         }
       })
     },
+    {
+      collection  = "quiz"
+      document_id = "question-4"
+      fields = jsonencode({
+        "question" = {
+          "stringValue" = "Fourth Question"
+        },
+        "answer" = {
+          "stringValue" = "Answer 4"
+        },
+        "created_at" = {
+          "timestampValue" = timestamp()
+        },
+        "updated_at" = {
+          "timestampValue" = timestamp()
+        }
+      })
+    },
   ]
 }
