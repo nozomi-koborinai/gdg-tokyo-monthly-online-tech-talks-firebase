@@ -243,6 +243,12 @@ flowchart TD
 
 ##### 4-2. サービスアカウントに対し、必要なロールを付与
 
+- App Engine 作成者
+- Firebase 管理者
+- Project IAM 管理者
+- Workload Identity ユーザー
+- 編集者
+
 <img src="/readme_images/add_roles.png" width="500">
 
 ##### 4-3. ID プールの作成
@@ -251,10 +257,20 @@ flowchart TD
 
 ##### 4-4. プールにプロバイダを追加
 
+- プロバイダの選択
+  - OpenID Connect (OIDC)
+- 発行元（URL）
+  - https://token.actions.githubusercontent.com
+
 <img src="/readme_images/workload_identity_2.png" width="500">
 
-
 ##### 4-5. プロバイダの属性を構成
+
+- 属性マッピング
+  - 外部 ID を構成する属性と OIDC トークン情報のマッピング
+- 属性条件
+  - Workload Identity の利用を OIDC トークンの内容に応じて制限する
+  - 今回は、自身の GitHub オーナー名を指定して、自身のリポジトリからのみ利用を許可する
 
 <img src="/readme_images/workload_identity_3.png" width="500">
 
