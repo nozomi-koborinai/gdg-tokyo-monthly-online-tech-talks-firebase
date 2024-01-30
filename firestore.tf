@@ -49,7 +49,7 @@ resource "google_firebaserules_release" "firestore" {
 
 # Adds a new Firestore document with seed data.
 resource "google_firestore_document" "docs" {
-  for_each    = local.docs
+  for_each    = { for doc in local.docs : doc.document_id => doc }
   provider    = google-beta
   project     = var.project_id
   collection  = each.value.collection
