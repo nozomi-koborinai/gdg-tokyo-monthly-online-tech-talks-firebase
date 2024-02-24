@@ -1,6 +1,6 @@
 resource "google_service_account" "demo_service_account" {
   for_each     = local.accounts
-  account_id   = each.value.account_id
+  account_id   = each.key
   display_name = each.value.display_name
 }
 
