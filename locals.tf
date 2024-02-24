@@ -1,4 +1,17 @@
 locals {
+  # IAM users
+  accounts = {
+    "user01" = {
+      display_name = "デモ用のサービスアカウント（User01）"
+      role         = "roles/owner"
+    },
+    "user02" = {
+      display_name = "デモ用のサービスアカウント（User02）"
+      role         = "roles/editor"
+    },
+  }
+
+  # Firestore master data
   docs = [
     {
       collection  = "quiz"
