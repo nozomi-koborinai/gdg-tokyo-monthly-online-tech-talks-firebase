@@ -1,12 +1,12 @@
 locals {
   # IAM users
   accounts = {
-    "User01" = {
-      display_name = "デモ用のサービスアカウント①"
+    "user01" = {
+      display_name = "デモ用のサービスアカウント（User01）"
       role         = "roles/owner"
     },
-    "User02" = {
-      display_name = "デモ用のサービスアカウント②"
+    "user02" = {
+      display_name = "デモ用のサービスアカウント（User02）"
       role         = "roles/editor"
     },
   }
